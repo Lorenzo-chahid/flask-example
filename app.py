@@ -61,7 +61,6 @@ def index():
 
 
 
-
 @app.route("/login/", methods=["GET", "POST"])
 def login():
     home = Users.query.all()
@@ -80,7 +79,7 @@ def login():
     return render_template("form.html")
 
 
-@app.route("/chat", methods=["GET"])
+@app.route("/chat", methods=["GET", "POST"])
 def chat():
     room = 1
     users = Users.query.all()
@@ -218,10 +217,11 @@ def login():
 
 
 @app.route("/chat", methods=["GET"])
-def chat():
+def chat(user):
     room = 1
     users = Users.query.all()
     posts = Posts.query.all()
+    user_this = Users.query.filter_by(id="user")
     return render_template("chat.html", users=users,posts=posts, room=room)
  
 
